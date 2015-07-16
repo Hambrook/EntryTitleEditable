@@ -1,0 +1,15 @@
+#page-header h1[contenteditable] {
+	padding-right: 1em;
+}
+#page-header h1[contenteditable] + i {
+	color: #999;
+	display: inline-flex;
+	font-size: 1.5em;
+	line-height: 1;
+	margin-left: -1em;
+	width: 1em;
+	transition: color 200ms ease;
+ }
+#page-header h1[contenteditable] + i:hover {
+	color: #000;
+}
