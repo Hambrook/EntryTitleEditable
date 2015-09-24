@@ -8,7 +8,7 @@ A Craft CMS extension to remove the entry title field from the field tabs and ma
 Setup
 ====================
 
-- Download this repository, rename the folder to 'entrytitleditable' and upload to craft/plugins directory.
+- Download this repository, rename the folder to 'entrytitleeditable' and upload to craft/plugins directory.
 
 Todo
 ====================
