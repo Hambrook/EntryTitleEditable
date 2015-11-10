@@ -2,8 +2,8 @@
 
 /**
  *
- * @package    EntryTitleEditable
- * @version    Version 1.1
+ * @package    AssetLinks
+ * @version    Version 1.0
  * @author     Rick Hambrook
  * @copyright  Copyright (c) 2015
  * @link       www.rickhambrook.com
@@ -18,7 +18,7 @@ class EntryTitleEditablePlugin extends BasePlugin {
 	}
 
 	public function getVersion() {
-		return '1.1';
+		return '1.0';
 	}
 
 	public function getDeveloper() {
@@ -34,11 +34,12 @@ class EntryTitleEditablePlugin extends BasePlugin {
 	}
 
 	function init() {
+		$section = [];
 		if (
 			!craft()->request->isCpRequest() ||
 			!craft()->userSession->isLoggedIn() ||
 			craft()->request->getSegment(1) !== "entries" ||
-			!($section = craft()->request->getSegment(2))
+			!($section[] = craft()->request->getSegment(2))
 		) {
 			return;
 		}
@@ -49,10 +50,16 @@ class EntryTitleEditablePlugin extends BasePlugin {
 		$whitelist = craft()->config->get("whitelist", "entrytitleeditable");
 		$whitelist = (is_array($whitelist)) ? $whitelist : [];
 
+		if (!$whitelist && !$blacklist) {
+			return;
+		}
+
+		$section[] = craft()->sections->getSectionByHandle($section[0])->id;
+
 		// Entries must be in the whitelist, if set. Or not on the blacklist
 		if (
-			($whitelist && !in_array($section, $whitelist)) ||
-			($blacklist && in_array($section, $blacklist))
+			($whitelist && !array_intersect($section, $whitelist)) ||
+			($blacklist && array_intersect($section, $blacklist))
 		) {
 			return;
 		}

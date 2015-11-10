@@ -19,7 +19,8 @@ You can configure which entry sections have this enabled using either a blacklis
 
     return [
         "blacklist" => [
-            "blog" // section handle
+            "blog", // section handle
+            5       // or section ID
         ],
         "whitelist" => [
         ]
