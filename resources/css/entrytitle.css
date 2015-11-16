@@ -10,6 +10,12 @@
 	width: 1em;
 	transition: color 200ms ease;
  }
+#page-header h1.error[contenteditable] + i {
+	color: #da5a47;
+}
 #page-header h1[contenteditable] + i:hover {
 	color: #000;
+}
+#page-header h1 + i + ul.errors {
+	margin-bottom: -3.1em;
 }
