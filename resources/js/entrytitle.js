@@ -3,7 +3,9 @@ $(function(){
 		$titleWrapper      = $("#page-header"),
 		$title             = $titleWrapper.find("h1"),
 		$titleFieldWrapper = $("#title-field"),
-		$titleField        = $("#title");
+		$titleField        = $("#title"),
+		$editIcon = $('<i data-icon="edit"></i>');
+
 	if (!$titleWrapper.length) { return false; }
 
 	$titleFieldWrapper
@@ -17,7 +19,19 @@ $(function(){
 			$(this).html($(this).text());
 			$titleField.val($(this).text());
 		})
-		.after('<i data-icon="edit"></i>');
+		.after($editIcon);
+
+	$editIcon.on('click', function() {
+		var
+			range = document.createRange(),
+			sel = window.getSelection();
+
+		$title.focus();
+		range.setStart($title[0].childNodes[0], $title[0].childNodes[0].length);
+		range.collapse(true);
+		sel.removeAllRanges();
+		sel.addRange(range);
+	});
 
 	if ($titleWrapper.find("ul.errors li").length) {
 		$title.addClass("error");
