@@ -2,10 +2,10 @@
 
 /**
  *
- * @package    AssetLinks
- * @version    Version 1.0
+ * @package    EntryTitleEditable
+ * @version    Version 1.1.0
  * @author     Rick Hambrook
- * @copyright  Copyright (c) 2015
+ * @copyright  Copyright (c) 2016
  * @link       www.rickhambrook.com
  *
  */
@@ -18,7 +18,7 @@ class EntryTitleEditablePlugin extends BasePlugin {
 	}
 
 	public function getVersion() {
-		return '1.0';
+		return '1.1.0';
 	}
 
 	public function getDeveloper() {

@@ -27,8 +27,3 @@ You can configure which entry sections have this enabled using either a blacklis
     ];
 
 If there are sections in the blacklist, then any section NOT in the blacklist will use the plugin. Or if there are sections in the whitelist, then ONLY sections in the whitelist will get this feature.
-
-Todo
-====================
-
-Enable clicking the icon to begin editing the title.
