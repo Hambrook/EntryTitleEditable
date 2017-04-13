@@ -3,7 +3,7 @@
 /**
  *
  * @package    EntryTitleEditable
- * @version    Version 1.1.0
+ * @version    Version 1.1.2
  * @author     Rick Hambrook
  * @copyright  Copyright (c) 2016
  * @link       www.rickhambrook.com
@@ -50,18 +50,16 @@ class EntryTitleEditablePlugin extends BasePlugin {
 		$whitelist = craft()->config->get("whitelist", "entrytitleeditable");
 		$whitelist = (is_array($whitelist)) ? $whitelist : [];
 
-		if (!$whitelist && !$blacklist) {
-			return;
-		}
+		if ($whitelist || $blacklist) {
+			$section[] = craft()->sections->getSectionByHandle($section[0])->id;
 
-		$section[] = craft()->sections->getSectionByHandle($section[0])->id;
-
-		// Entries must be in the whitelist, if set. Or not on the blacklist
-		if (
-			($whitelist && !array_intersect($section, $whitelist)) ||
-			($blacklist && array_intersect($section, $blacklist))
-		) {
-			return;
+			// Entries must be in the whitelist, if set. Or not on the blacklist
+			if (
+				($whitelist && !array_intersect($section, $whitelist)) ||
+				($blacklist && array_intersect($section, $blacklist))
+			) {
+				return;
+			}
 		}
 
 		// Do the thing

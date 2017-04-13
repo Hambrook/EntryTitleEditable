@@ -27,3 +27,5 @@ You can configure which entry sections have this enabled using either a blacklis
     ];
 
 If there are sections in the blacklist, then any section NOT in the blacklist will use the plugin. Or if there are sections in the whitelist, then ONLY sections in the whitelist will get this feature.
+
+By default (as of V1.1.2) the default configuration will activate this plugin for all sections.
