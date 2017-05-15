@@ -3,7 +3,7 @@
 /**
  *
  * @package    EntryTitleEditable
- * @version    Version 1.1.2
+ * @version    Version 1.1.3
  * @author     Rick Hambrook
  * @copyright  Copyright (c) 2016
  * @link       www.rickhambrook.com
@@ -18,7 +18,7 @@ class EntryTitleEditablePlugin extends BasePlugin {
 	}
 
 	public function getVersion() {
-		return '1.1.0';
+		return '1.1.3';
 	}
 
 	public function getDeveloper() {
@@ -34,12 +34,17 @@ class EntryTitleEditablePlugin extends BasePlugin {
 	}
 
 	function init() {
+		// We use an array to first store the section slug
+		// then we add the section ID so that both IDs and
+		// slugs can be used in the white/black lists
 		$section = [];
+
 		if (
 			!craft()->request->isCpRequest() ||
 			!craft()->userSession->isLoggedIn() ||
 			craft()->request->getSegment(1) !== "entries" ||
-			!($section[] = craft()->request->getSegment(2))
+			!($section[] = craft()->request->getSegment(2)) ||
+			!craft()->request->getSegment(3)
 		) {
 			return;
 		}
