@@ -15,16 +15,18 @@ $(function(){
 	$title
 		.attr("contenteditable", true)
 		.attr("title", "Click to edit")
-		.on("keydown keypress keyup paste", function(e) {
+		.on("keydown keypress keyup paste", function(e){
 			if (e.charCode == 13) {
 				e.preventDefault();
 				return;
 			}
-			$titleField.val($(this).text());
+			var $this = $(this);
+			$this.html($this.text());
+			$titleField.val($this.text());
 		})
 		.after($editIcon);
 
-	$editIcon.on("click", function() {
+	$editIcon.on('click', function() {
 		var
 			range = document.createRange(),
 			sel = window.getSelection();

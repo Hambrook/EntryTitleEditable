@@ -3,7 +3,7 @@
 /**
  *
  * @package    EntryTitleEditable
- * @version    Version 1.1.3
+ * @version    Version 1.1.4
  * @author     Rick Hambrook
  * @copyright  Copyright (c) 2016
  * @link       www.rickhambrook.com
@@ -18,7 +18,7 @@ class EntryTitleEditablePlugin extends BasePlugin {
 	}
 
 	public function getVersion() {
-		return '1.1.3';
+		return '1.1.4';
 	}
 
 	public function getDeveloper() {
@@ -26,14 +26,14 @@ class EntryTitleEditablePlugin extends BasePlugin {
 	}
 
 	public function getDeveloperUrl() {
-		return 'http://www.rickhambrook.com';
+		return 'https://www.rickhambrook.com';
 	}
 
 	public function hasCpSection() {
 		return false;
 	}
 
-	function init() {
+	public function init() {
 		// We use an array to first store the section slug
 		// then we add the section ID so that both IDs and
 		// slugs can be used in the white/black lists
