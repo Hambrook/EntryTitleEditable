@@ -1,12 +1,24 @@
 $(function(){
-	var
+	let
 		$titleWrapper      = $("#page-header"),
 		$title             = $titleWrapper.find("h1"),
 		$titleFieldWrapper = $("#title-field"),
 		$titleField        = $("#title"),
-		$editIcon = $('<i data-icon="edit"></i>');
+		$editIcon          = $('<i data-icon="edit"></i>');
 
 	if (!$titleWrapper.length) { return false; }
+	
+	let focus = function() {
+		let
+			range = document.createRange(),
+			sel = window.getSelection();
+
+		$title.focus();
+		range.setStart($title[0].childNodes[0], $title[0].childNodes[0].length);
+		range.collapse(true);
+		sel.removeAllRanges();
+		sel.addRange(range);
+	}
 
 	$titleFieldWrapper
 		.hide()
@@ -20,23 +32,15 @@ $(function(){
 				e.preventDefault();
 				return;
 			}
-			var $this = $(this);
-			$this.html($this.text());
-			$titleField.val($this.text());
+			if ($title.html() != $title.text()) {
+				$title.html($title.text());
+				focus();
+			}
+			$titleField.val($title.text());
 		})
 		.after($editIcon);
 
-	$editIcon.on('click', function() {
-		var
-			range = document.createRange(),
-			sel = window.getSelection();
-
-		$title.focus();
-		range.setStart($title[0].childNodes[0], $title[0].childNodes[0].length);
-		range.collapse(true);
-		sel.removeAllRanges();
-		sel.addRange(range);
-	});
+	$editIcon.on('click', focus);
 
 	if ($titleWrapper.find("ul.errors li").length) {
 		$title.addClass("error");

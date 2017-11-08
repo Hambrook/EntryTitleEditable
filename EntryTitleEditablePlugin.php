@@ -3,7 +3,7 @@
 /**
  *
  * @package    EntryTitleEditable
- * @version    Version 1.1.4
+ * @version    Version 1.1.5
  * @author     Rick Hambrook
  * @copyright  Copyright (c) 2016
  * @link       www.rickhambrook.com
@@ -18,7 +18,7 @@ class EntryTitleEditablePlugin extends BasePlugin {
 	}
 
 	public function getVersion() {
-		return '1.1.4';
+		return '1.1.5';
 	}
 
 	public function getDeveloper() {
