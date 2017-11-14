@@ -6,7 +6,7 @@ $(function(){
 		$titleField        = $("#title"),
 		$editIcon          = $('<i data-icon="edit"></i>');
 
-	if (!$titleWrapper.length) { return false; }
+	if (!$titleWrapper.length || !$titleField.length) { return false; }
 	
 	let focus = function() {
 		let
@@ -24,6 +24,7 @@ $(function(){
 		.hide()
 		.find("ul.errors")
 			.insertAfter($title);
+
 	$title
 		.attr("contenteditable", true)
 		.attr("title", "Click to edit")
