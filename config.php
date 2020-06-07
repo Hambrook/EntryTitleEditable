@@ -1,8 +1,8 @@
 <?php
 
 return [
-	"blacklist" => [
+	"ignoresections" => [
 	],
-	"whitelist" => [
+	"onlysections" => [
 	]
 ];

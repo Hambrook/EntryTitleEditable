@@ -3,7 +3,7 @@
 /**
  *
  * @package    EntryTitleEditable
- * @version    Version 1.1.5
+ * @version    Version 1.1.6
  * @author     Rick Hambrook
  * @copyright  Copyright (c) 2016
  * @link       www.rickhambrook.com
@@ -18,7 +18,7 @@ class EntryTitleEditablePlugin extends BasePlugin {
 	}
 
 	public function getVersion() {
-		return '1.1.5';
+		return '1.1.6';
 	}
 
 	public function getDeveloper() {
@@ -36,7 +36,7 @@ class EntryTitleEditablePlugin extends BasePlugin {
 	public function init() {
 		// We use an array to first store the section slug
 		// then we add the section ID so that both IDs and
-		// slugs can be used in the white/black lists
+		// slugs can be used in the only/ignore section lists
 		$section = [];
 
 		if (
@@ -49,19 +49,19 @@ class EntryTitleEditablePlugin extends BasePlugin {
 			return;
 		}
 
-		// Get black and white lists as arrays
-		$blacklist = craft()->config->get("blacklist", "entrytitleeditable");
-		$blacklist = (is_array($blacklist)) ? $blacklist : [];
-		$whitelist = craft()->config->get("whitelist", "entrytitleeditable");
-		$whitelist = (is_array($whitelist)) ? $whitelist : [];
+		// Get ignoresections and onlysections lists as arrays
+		$ignoresections = craft()->config->get("ignoresections", "entrytitleeditable");
+		$ignoresections = (is_array($ignoresections)) ? $ignoresections : [];
+		$onlysections = craft()->config->get("onlysections", "entrytitleeditable");
+		$onlysections = (is_array($onlysections)) ? $onlysections : [];
 
-		if ($whitelist || $blacklist) {
+		if ($onlysections || $ignoresections) {
 			$section[] = craft()->sections->getSectionByHandle($section[0])->id;
 
-			// Entries must be in the whitelist, if set. Or not on the blacklist
+			// Entries must be in the onlysections list, if set. Or not on the ignoresections list
 			if (
-				($whitelist && !array_intersect($section, $whitelist)) ||
-				($blacklist && array_intersect($section, $blacklist))
+				($onlysections && !array_intersect($section, $onlysections)) ||
+				($ignoresections && array_intersect($section, $ignoresections))
 			) {
 				return;
 			}
